@@ -17,4 +17,9 @@ public class PostRepository {
 		return null;
 	}
 
+	public Long getDefaultCategoryNoById(String blogId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
