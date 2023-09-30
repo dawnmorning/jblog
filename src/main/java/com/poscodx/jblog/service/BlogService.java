@@ -33,13 +33,13 @@ Map<String,Object> blogInfoMap = new HashMap<String, Object>();
 			postNo = pathPost.get();
 			categoryNo = pathCategory.get();
 			
-			blogInfoMap.put("postTitleList", postRepository.getVoListByCategoryNo(categoryNo)); //path가 정상적으로 들어왔을때.
+			blogInfoMap.put("postTitleList", postRepository.getVoListByCategoryNo(categoryNo)); 
 			blogInfoMap.put("postVo",postRepository.getVoByPostNo(postNo));
 			
 		} else if( pathCategory.isPresent() ){
 			categoryNo = pathCategory.get();
 			
-			blogInfoMap.put("postTitleList", postRepository.getVoListByCategoryNo(categoryNo)); // path가 category까지만 들어왔을 때. 카테고리의 첫번째 글
+			blogInfoMap.put("postTitleList", postRepository.getVoListByCategoryNo(categoryNo)); 
 			blogInfoMap.put("postVo",postRepository.getVoByPostNo(postRepository.getDefaultPostNoByCategoryNo(categoryNo)));
 			
 		}
