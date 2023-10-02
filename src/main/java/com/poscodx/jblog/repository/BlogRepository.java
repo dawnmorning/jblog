@@ -9,8 +9,5 @@ public class BlogRepository {
 	@Autowired
 	private SqlSession sqlSession;
 
-	public Object getInfoById(String blogId) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+
 }
