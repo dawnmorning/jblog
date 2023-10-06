@@ -1,5 +1,7 @@
 package com.poscodx.jblog.repository;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -11,13 +13,23 @@ public class PostRepository {
 
 	@Autowired
 	private SqlSession sqlSession;
-	public boolean addPost(PostVo postVo) {
-		int count = sqlSession.insert("post.addPost", postVo);
+
+	public boolean add(PostVo postVo) {
+		int count = sqlSession.insert("post.add", postVo);
 		return count == 1;
 	}
+
 	public boolean delete(Long postNo) {
 		int count = sqlSession.delete("post.delete", postNo);
 		return count == 1;
+	}
+
+	public List<PostVo> findPostsByCategory(Long categoryNo) {
+		return sqlSession.selectList("post.findPostsByCategory", categoryNo);
+	}
+
+	public PostVo findPostByPostNo(Long postNo) {
+		return sqlSession.selectOne("post.findPostByPostNo", postNo);
 	}
 
 }

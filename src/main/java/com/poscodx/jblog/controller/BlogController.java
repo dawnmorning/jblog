@@ -40,14 +40,14 @@ public class BlogController {
 
 		List<CategoryVo> categoryList = categoryService.getCategoriesById(blogId);
 
-		List<PostVo> postList = null;
+		List<PostVo> postVo = null;
 
 		if (categoryNo.isPresent()) {
-			postList = postService.getPostsByCategory(categoryNo.get());
+			postVo = postService.getPostsByCategory(categoryNo.get());
 		} else {
 			if (categoryList.size() > 0) {
 				categoryNo = Optional.of(categoryList.get(0).getNo());
-				postList = postService.getPostsByCategory(categoryList.get(0).getNo());
+				postVo = postService.getPostsByCategory(categoryList.get(0).getNo());
 			}
 		}
 
@@ -55,13 +55,14 @@ public class BlogController {
 			PostVo post = postService.getPostByNo(postNo.get());
 			model.addAttribute("post", post);
 		} else {
-			if (postList != null && postList.size() > 0) {
-				PostVo post = postService.getPostByNo(postList.get(0).getNo());
+			if (postVo != null && postVo.size() > 0) {
+				PostVo post = postService.getPostByNo(postVo.get(0).getNo());
 				model.addAttribute("post", post);
 			}
 		}
 		model.addAttribute("categoryNo", categoryNo.get());
-		model.addAttribute("postList", postList);
+		model.addAttribute("postVo", postVo);
+		System.out.println(postVo);
 		model.addAttribute("blogVo", blogVo);
 		model.addAttribute("categoryList", categoryList);
 
@@ -109,41 +110,40 @@ public class BlogController {
 
 		return "redirect:/" + blogId + "/admin/category";
 	}
-	
-	@RequestMapping(value="/admin/write", method = RequestMethod.GET)
+
+	@RequestMapping(value = "/admin/write", method = RequestMethod.GET)
 	public String adminWrite(@PathVariable("blogId") String blogId, Model model) {
 		List<CategoryVo> categoryVo = categoryService.getCategoriesById(blogId);
 		model.addAttribute("categoryVo", categoryVo);
-		
+
 		BlogVo blogVo = blogService.getBlog(blogId);
 		model.addAttribute("blogVo", blogVo);
-		
+
 		return "blog/admin-write";
 	}
-	
-	@RequestMapping(value="/admin/write", method=RequestMethod.POST)
+
+	@RequestMapping(value = "/admin/write", method = RequestMethod.POST)
 	public String adminWrite(@PathVariable("blogId") String blogId, PostVo postVo) {
-		postService.addPost(postVo);
-		return "redirect:/"+blogId;
+		postService.add(postVo);
+		return "redirect:/" + blogId;
 	}
-	
-	@RequestMapping(value="/admin/basic/update", method=RequestMethod.POST)
-	public String adminUpdate(@PathVariable("blogId") String blogId, 
-								@RequestParam("logo-file") MultipartFile file,
-								BlogVo blogVo) {
+
+	@RequestMapping(value = "/admin/basic/update", method = RequestMethod.POST)
+	public String adminUpdate(@PathVariable("blogId") String blogId, @RequestParam("logo-file") MultipartFile file,
+			BlogVo blogVo) {
 		String url = fileUploadService.restore(file);
 		blogVo.setImage(url);
 		blogVo.setBlogId(blogId);
 		blogService.update(blogVo);
-		
-		return "redirect:/"+blogId+"/admin/basic";  
+
+		return "redirect:/" + blogId + "/admin/basic";
 	}
-	
-	@RequestMapping(value="/admin/delete/{no}")
+
+	@RequestMapping(value = "/admin/delete/{no}")
 	public String adminDelete(@PathVariable("blogId") String blogId, @PathVariable Long no) {
 		postService.delete(no);
 		categoryService.delete(no);
-		return "redirect:/"+ blogId+ "/admin/category";
+		return "redirect:/" + blogId + "/admin/category";
 	}
-	
+
 }

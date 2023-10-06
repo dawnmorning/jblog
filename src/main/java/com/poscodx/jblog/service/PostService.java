@@ -13,18 +13,16 @@ public class PostService {
 	@Autowired
 	private PostRepository postRepository;
 	
-	public List<PostVo> getPostsByCategory(Long long1) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PostVo> getPostsByCategory(Long categoryNo) {
+		return postRepository.findPostsByCategory(categoryNo);
 	}
 
-	public PostVo getPostByNo(Long long1) {
-		// TODO Auto-generated method stub
-		return null;
+	public PostVo getPostByNo(Long postNo) {
+		return postRepository.findPostByPostNo(postNo);
 	}
 
-	public boolean addPost(PostVo postVo) {
-		return postRepository.addPost(postVo);
+	public boolean add(PostVo postVo) {
+		return postRepository.add(postVo);
 		
 	}
 

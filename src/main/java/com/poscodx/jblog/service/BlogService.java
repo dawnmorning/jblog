@@ -9,7 +9,6 @@ import com.poscodx.jblog.repository.BlogRepository;
 import com.poscodx.jblog.vo.BlogVo;
 import com.poscodx.jblog.vo.CategoryVo;
 import com.poscodx.jblog.vo.PostVo;
-import com.poscodx.jblog.vo.UserVo;
 
 @Service
 public class BlogService {
@@ -33,8 +32,8 @@ public class BlogService {
 		return null;
 	}
 
-	public void add(UserVo userVo) {
-		blogRepository.add(userVo);
+	public void add(BlogVo blogVo) {
+		blogRepository.add(blogVo);
 	}
 
 	public void update(BlogVo blogVo) {

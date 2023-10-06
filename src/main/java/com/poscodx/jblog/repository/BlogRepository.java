@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import com.poscodx.jblog.vo.BlogVo;
 import com.poscodx.jblog.vo.CategoryVo;
 import com.poscodx.jblog.vo.PostVo;
-import com.poscodx.jblog.vo.UserVo;
 
 @Repository
 public class BlogRepository {
@@ -28,8 +27,8 @@ public class BlogRepository {
 		return sqlSession.selectList("blog.getPostByCategory", no);
 	}
 
-	public void add(UserVo userVo) {
-		sqlSession.insert("blog.add", userVo);
+	public void add(BlogVo blogVo) {
+		sqlSession.insert("blog.add", blogVo);
 	}
 
 	public void update(BlogVo blogVo) {

@@ -22,12 +22,12 @@
 		<div id="wrapper">
 			<div id="content">
 				<div class="blog-content">
-					<h4>${postList[0].title}</h4>
-					<p>${postList[0].contents}
+					<h4>${postVo[0].title}</h4>
+					<p>${postVo[0].contents}
 					<p>
 				</div>
 				<ul class="blog-list">
-					<c:forEach items="${postList}" var="post">
+					<c:forEach items="${postVo}" var="post">
 						<li><a href="#">${post.title}</a></li>
 					</c:forEach>
 				</ul>

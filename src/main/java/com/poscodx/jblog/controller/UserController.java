@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.poscodx.jblog.service.BlogService;
 import com.poscodx.jblog.service.CategoryService;
+import com.poscodx.jblog.service.PostService;
 import com.poscodx.jblog.service.UserService;
+import com.poscodx.jblog.vo.BlogVo;
 import com.poscodx.jblog.vo.CategoryVo;
+import com.poscodx.jblog.vo.PostVo;
 import com.poscodx.jblog.vo.UserVo;
 
 @Controller
@@ -25,7 +28,8 @@ public class UserController {
 	private BlogService blogService;
 	@Autowired
 	private CategoryService categoryService;
-
+	@Autowired
+	private PostService postService;
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join(@ModelAttribute UserVo userVo) {
 		return "user/join";
@@ -33,15 +37,30 @@ public class UserController {
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(@ModelAttribute UserVo userVo, BindingResult result, Model model) {
-
+		if(result.hasErrors()) {
+			model.addAllAttributes(result.getModel());
+			return "user/join";
+		}
 			userService.addUser(userVo);
-			blogService.add(userVo);
+			BlogVo blogVo = new BlogVo();
+		    blogVo.setBlogId(userVo.getId());
+		    blogVo.setTitle(userVo.getName() + "님의 블로그입니다.");
+		    // 여기에서 기본 이미지 경로 설정
+		    blogVo.setImage("/assets/images/spring-logo.jpg");
+		    blogService.add(blogVo);
 			CategoryVo categoryVo = new CategoryVo();
 			categoryVo.setBlogId(userVo.getId());
 			categoryVo.setName("카테고리를 만들어 보세요.");
 			categoryVo.setDescription("분류를 통해 쉽게 볼 수 있습니다.");
 			
+			PostVo postVo = new PostVo();
+			postVo.setCategoryNo(1L);
+			postVo.setTitle("기본으로 작성된 글입니다.");
+			postVo.setContents("기본으로 작성된 글입니다.");
+			
+			
 			categoryService.add(categoryVo);
+			postService.add(postVo);
 			return "user/joinsuccess";
 	}
 

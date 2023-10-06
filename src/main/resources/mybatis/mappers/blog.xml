@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="blog">
-	<insert id="add" parameterType="uservo">
+	<insert id="add" parameterType="blogvo">
 		insert into blog values
-		(CONCAT(#{name}, '의 블로그 입니다.'), '/mysite-uploads/202382153142691.png'
-		, #{id})
+		(#{title}, #{image}, #{blogId})
+		
 
 	</insert>
 	<select id="getBlogById" parameterType="string"
