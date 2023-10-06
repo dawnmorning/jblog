@@ -125,5 +125,11 @@ public class BlogController {
 		postService.addPost(postVo);
 		return "redirect:/"+blogId;
 	}
+	@RequestMapping(value="/admin/delete/{no}")
+	public String adminDelete(@PathVariable("blogId") String blogId, @PathVariable Long no) {
+		postService.delete(no);
+		categoryService.delete(no);
+		return "redirect:/"+ blogId+ "/admin/category";
+	}
 	
 }

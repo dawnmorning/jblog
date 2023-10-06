@@ -15,5 +15,9 @@ public class PostRepository {
 		int count = sqlSession.insert("post.addPost", postVo);
 		return count == 1;
 	}
+	public boolean delete(Long postNo) {
+		int count = sqlSession.delete("post.delete", postNo);
+		return count == 1;
+	}
 
 }

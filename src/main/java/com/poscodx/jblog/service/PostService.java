@@ -28,4 +28,9 @@ public class PostService {
 		
 	}
 
+	public boolean delete(Long no) {
+		return postRepository.delete(no);
+		
+	}
+
 }

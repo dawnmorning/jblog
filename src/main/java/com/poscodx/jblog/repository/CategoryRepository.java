@@ -21,6 +21,10 @@ public class CategoryRepository {
 		int count = sqlSession.insert("category.add", categoryVo);
 		return count == 1;
 	}
-	
-	
+
+	public boolean delete(Long categoryNo) {
+		int count = sqlSession.delete("category.delete", categoryNo);
+		return count == 1;
+	}
+
 }

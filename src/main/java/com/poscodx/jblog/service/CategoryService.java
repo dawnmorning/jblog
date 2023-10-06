@@ -21,4 +21,8 @@ public class CategoryService {
 		return categoryRepository.add(categoryVo);
 	}
 
+	public boolean delete(Long no) {
+		return categoryRepository.delete(no);
+	}
+
 }

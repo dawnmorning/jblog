@@ -36,7 +36,7 @@
 							<td>${item.postCount }</td>
 							<td>${item.description }</td>
 							<td><a
-								href="${pageContext.request.contextPath}/${blog.blogId }/admin/delete/${item.no}">
+								href="${pageContext.request.contextPath}/${blogVo.blogId }/admin/delete/${item.no}">
 									<img
 									src="${pageContext.request.contextPath}/assets/images/delete.jpg">
 							</a></td>

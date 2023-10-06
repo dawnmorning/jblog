@@ -10,7 +10,7 @@
 		]]>
 	</insert>
 
-	<delete id="deletePostsByCategoryNo" parameterType="long">
+	<delete id="delete" parameterType="long">
 		<![CDATA[
 		delete from post
 		where category_no = #{categoryNo}
