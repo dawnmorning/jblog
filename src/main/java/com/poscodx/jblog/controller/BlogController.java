@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.poscodx.jblog.service.BlogService;
@@ -125,6 +126,19 @@ public class BlogController {
 		postService.addPost(postVo);
 		return "redirect:/"+blogId;
 	}
+	
+	@RequestMapping(value="/admin/basic/update", method=RequestMethod.POST)
+	public String adminUpdate(@PathVariable("blogId") String blogId, 
+								@RequestParam("logo-file") MultipartFile file,
+								BlogVo blogVo) {
+		String url = fileUploadService.restore(file);
+		blogVo.setImage(url);
+		blogVo.setBlogId(blogId);
+		blogService.update(blogVo);
+		
+		return "redirect:/"+blogId+"/admin/basic";  
+	}
+	
 	@RequestMapping(value="/admin/delete/{no}")
 	public String adminDelete(@PathVariable("blogId") String blogId, @PathVariable Long no) {
 		postService.delete(no);

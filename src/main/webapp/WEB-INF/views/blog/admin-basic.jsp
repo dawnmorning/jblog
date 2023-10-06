@@ -21,7 +21,7 @@
 			<div id="content" class="full-screen">
 				<c:import url="/WEB-INF/views/includes/admin-header.jsp" />
 				<form
-					action="${pageContext.request.contextPath }/${blogVo.blogId }/main/update"
+					action="${pageContext.request.contextPath }/${blogVo.blogId }/admin/basic/update"
 					method="post" enctype="multipart/form-data">
 					<table class="admin-config">
 						<tr>
