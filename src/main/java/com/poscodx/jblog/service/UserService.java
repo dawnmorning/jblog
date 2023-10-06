@@ -11,8 +11,8 @@ public class UserService {
 	@Autowired
 	private UserRepository userRepository;
 	
-	public void addUser(UserVo userVo) {
-		userRepository.insert(userVo);
+	public boolean addUser(UserVo userVo) {
+		return userRepository.insert(userVo);
 	}
 	public UserVo getUser(String id, String password) {
 		return userRepository.findByIdAndPassword(id, password);

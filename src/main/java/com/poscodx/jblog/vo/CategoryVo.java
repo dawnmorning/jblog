@@ -43,7 +43,7 @@ public class CategoryVo {
 		return postCount;
 	}
 
-	public void setPostCount(int postCount) {
+	public void setPostAmount(int postCount) {
 		this.postCount = postCount;
 	}
 

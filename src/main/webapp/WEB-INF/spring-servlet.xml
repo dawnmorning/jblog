@@ -32,6 +32,7 @@
 	<!-- Multipart Resolver -->
 
 	<!-- mvc url-resource mapping -->
+	<mvc:resources mapping="/assets/upload-images/**" location="file:/mysite-uploads/" />
 
 	<!-- View Resolver -->
 	<bean id="viewResolver"

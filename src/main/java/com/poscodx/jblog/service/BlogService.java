@@ -1,10 +1,6 @@
 package com.poscodx.jblog.service;
 
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +9,7 @@ import com.poscodx.jblog.repository.BlogRepository;
 import com.poscodx.jblog.vo.BlogVo;
 import com.poscodx.jblog.vo.CategoryVo;
 import com.poscodx.jblog.vo.PostVo;
+import com.poscodx.jblog.vo.UserVo;
 
 @Service
 public class BlogService {
@@ -20,23 +17,28 @@ public class BlogService {
 	private BlogRepository blogRepository;
 
 	public BlogVo getBlog(String blogId) {
-		// TODO Auto-generated method stub
-		return null;
+		return blogRepository.getBlogById(blogId);
 	}
 
 	public List<CategoryVo> getCategoriesById(String blogId) {
-		// TODO Auto-generated method stub
-		return null;
+		return blogRepository.getCategoriesById(blogId);
 	}
 
 	public List<PostVo> getPostsByCategory(Long no) {
+		return blogRepository.getPostByCategory(no);
+	}
+
+	public PostVo getPostByNo(Long postNo) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	public com.poscodx.jblog.vo.PostVo getPostByNo(Long long1) {
-		// TODO Auto-generated method stub
-		return null;
+	public void add(UserVo userVo) {
+		blogRepository.add(userVo);
+	}
+
+	public void update(BlogVo blogVo) {
+		blogRepository.update(blogVo);
 	}
 
 }
