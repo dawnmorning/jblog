@@ -24,8 +24,8 @@ public class PostRepository {
 		return count == 1;
 	}
 
-	public List<PostVo> findPostsByCategory(Long categoryNo) {
-		return sqlSession.selectList("post.findPostsByCategory", categoryNo);
+	public List<PostVo> getPostsByCategory(Long categoryNo) {
+		return sqlSession.selectList("post.getPostsByCategory", categoryNo);
 	}
 
 	public PostVo findPostByPostNo(Long postNo) {

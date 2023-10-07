@@ -28,6 +28,12 @@
 			<mvc:mapping path="/user/logout" />
 			<bean class="com.poscodx.jblog.interceptor.LogoutInterceptor" />
 		</mvc:interceptor>
+		<!-- Interceptors -->
+		<mvc:interceptor>
+			<mvc:mapping path="/{blogId:^(?!assets).*$}/admin/**" />
+			<bean class="com.poscodx.jblog.interceptor.AdminInterceptor" />
+		</mvc:interceptor>
+
 	</mvc:interceptors>
 	<!-- Multipart Resolver -->
 	<bean id="multipartResolver"

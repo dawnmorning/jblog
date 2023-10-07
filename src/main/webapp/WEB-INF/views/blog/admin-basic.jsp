@@ -15,8 +15,8 @@
 	<div id="container">
 		<div id="header">
 			<h1>${blogVo.title }</h1>
+			<c:import url="/WEB-INF/views/includes/blog-header.jsp" />
 		</div>
-		<c:import url="/WEB-INF/views/includes/blog-header.jsp" />
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<c:import url="/WEB-INF/views/includes/admin-header.jsp" />
@@ -27,7 +27,7 @@
 						<tr>
 							<td class="t">블로그 제목</td>
 							<td><input type="text" size="40" name="title"
-								value=${blogVo.title }></td>
+								value="${blogVo.title }"></td>
 						</tr>
 						<tr>
 							<td class="t">로고이미지</td>

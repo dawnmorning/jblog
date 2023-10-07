@@ -14,7 +14,7 @@ public class PostService {
 	private PostRepository postRepository;
 	
 	public List<PostVo> getPostsByCategory(Long categoryNo) {
-		return postRepository.findPostsByCategory(categoryNo);
+		return postRepository.getPostsByCategory(categoryNo);
 	}
 
 	public PostVo getPostByNo(Long postNo) {

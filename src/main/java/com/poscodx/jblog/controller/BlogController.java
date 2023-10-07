@@ -1,5 +1,6 @@
 package com.poscodx.jblog.controller;
 
+import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,32 +38,40 @@ public class BlogController {
 			@PathVariable Optional<Long> postNo, Model model) {
 
 		BlogVo blogVo = blogService.getBlog(blogId);
+		if (blogVo == null) {
+			return "error/404";
+		}
 
 		List<CategoryVo> categoryList = categoryService.getCategoriesById(blogId);
+		if (categoryList == null || categoryList.isEmpty()) {
+			return "error/404";
+		}
 
 		List<PostVo> postVo = null;
-
 		if (categoryNo.isPresent()) {
 			postVo = postService.getPostsByCategory(categoryNo.get());
-		} else {
-			if (categoryList.size() > 0) {
-				categoryNo = Optional.of(categoryList.get(0).getNo());
-				postVo = postService.getPostsByCategory(categoryList.get(0).getNo());
+			if (postVo == null || postVo.isEmpty()) {
+				return "error/404";
 			}
+		} else {
+			categoryNo = Optional.of(categoryList.get(0).getNo());
+			postVo = postService.getPostsByCategory(categoryNo.get());
+			System.out.println(categoryNo.get());
 		}
 
 		if (postNo.isPresent()) {
 			PostVo post = postService.getPostByNo(postNo.get());
-			model.addAttribute("post", post);
-		} else {
-			if (postVo != null && postVo.size() > 0) {
-				PostVo post = postService.getPostByNo(postVo.get(0).getNo());
-				model.addAttribute("post", post);
+			if (post == null) {
+				return "error/404";
 			}
+			model.addAttribute("post", post);
+		} else if (postVo != null && !postVo.isEmpty()) {
+			model.addAttribute("post", postVo.get(0));
+			System.out.println(postVo.get(0));
 		}
-		model.addAttribute("categoryNo", categoryNo.get());
+
+		model.addAttribute("categoryNo", categoryNo.orElse(null));
 		model.addAttribute("postVo", postVo);
-		System.out.println(postVo);
 		model.addAttribute("blogVo", blogVo);
 		model.addAttribute("categoryList", categoryList);
 

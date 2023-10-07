@@ -17,9 +17,9 @@
 		]]>
 	</delete>
 
-	<select id="findPostsByCategory" resultType="postvo" parameterType="long">
+	<select id="getPostsByCategory" resultType="postvo" parameterType="long">
 		<![CDATA[
-		select no, title
+		select no, title, contents
 		from post
 		where category_no = #{categoryNo}
 		order by no desc

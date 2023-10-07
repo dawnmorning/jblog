@@ -15,20 +15,20 @@
 	<div id="container">
 		<div id="header">
 			<h1>${blogVo.title }</h1>
+			<c:import url="/WEB-INF/views/includes/blog-header.jsp" />
 		</div>
-
-		<c:import url="/WEB-INF/views/includes/blog-header.jsp" />
-
 		<div id="wrapper">
 			<div id="content">
+				<c:import url="/WEB-INF/views/includes/admin-header.jsp" />
 				<div class="blog-content">
-					<h4>${postVo[0].title}</h4>
-					<p>${postVo[0].contents}
+					<h4>${post.title}</h4>
+					<p>${post.contents}
 					<p>
 				</div>
 				<ul class="blog-list">
 					<c:forEach items="${postVo}" var="post">
-						<li><a href="#">${post.title}</a></li>
+						<li><a
+							href="${pageContext.request.contextPath }/${blogVo.blogId}/${categoryNo}/${post.no}">${post.title}</a></li>
 					</c:forEach>
 				</ul>
 			</div>
@@ -36,8 +36,7 @@
 
 		<div id="extra">
 			<div class="blog-logo">
-				<img
-					src="${pageContext.request.contextPath}${blogVo.image}">
+				<img src="${pageContext.request.contextPath}${blogVo.image}">
 			</div>
 		</div>
 
@@ -45,7 +44,7 @@
 			<h2>카테고리</h2>
 			<ul>
 				<c:forEach items="${categoryList }" var="category">
-					<li><a href="">${category.name }</a></li>
+					<li><a href="${pageContext.request.contextPath }/${blogVo.blogId}/${category.no}">${category.name }</a></li>
 				</c:forEach>
 			</ul>
 		</div>

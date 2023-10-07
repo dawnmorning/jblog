@@ -5,8 +5,6 @@
 	<insert id="add" parameterType="blogvo">
 		insert into blog values
 		(#{title}, #{image}, #{blogId})
-		
-
 	</insert>
 	<select id="getBlogById" parameterType="string"
 		resultType="blogvo">

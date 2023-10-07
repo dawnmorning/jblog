@@ -14,14 +14,12 @@
 <body>
 	<div id="container">
 		<div id="header">
-			<h1>Spring 이야기</h1>
+			<h1>${blogVo.title }</h1>
+			<c:import url="/WEB-INF/views/includes/blog-header.jsp" />
 		</div>
-		<c:import url="/WEB-INF/views/includes/blog-header.jsp" />
 		<div id="wrapper">
 			<div id="content" class="full-screen">
-				<ul class="admin-menu">
-					<c:import url="/WEB-INF/views/includes/admin-header.jsp" />
-				</ul>
+				<c:import url="/WEB-INF/views/includes/admin-header.jsp" />
 				<form
 					action="${pageContext.request.contextPath }/${blogVo.blogId }/admin/write"
 					method="post">
@@ -37,7 +35,7 @@
 						</tr>
 						<tr>
 							<td class="t">내용</td>
-							<td><textarea name="content"></textarea></td>
+							<td><textarea name="contents"></textarea></td>
 						</tr>
 						<tr>
 							<td>&nbsp;</td>
