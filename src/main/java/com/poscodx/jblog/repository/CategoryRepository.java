@@ -17,14 +17,15 @@ public class CategoryRepository {
 		return sqlSession.selectList("category.getCategoriesById", blogId);
 	}
 
-	public boolean add(CategoryVo categoryVo) {
-		int count = sqlSession.insert("category.add", categoryVo);
-		return count == 1;
+	public long add(CategoryVo categoryVo) {
+	    sqlSession.insert("category.add", categoryVo);
+	    return categoryVo.getNo();
 	}
 
 	public boolean delete(Long categoryNo) {
 		int count = sqlSession.delete("category.delete", categoryNo);
 		return count == 1;
 	}
+
 
 }

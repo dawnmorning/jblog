@@ -19,7 +19,6 @@
 		</div>
 		<div id="wrapper">
 			<div id="content">
-				<c:import url="/WEB-INF/views/includes/admin-header.jsp" />
 				<div class="blog-content">
 					<h4>${post.title}</h4>
 					<p>${post.contents}
@@ -44,7 +43,8 @@
 			<h2>카테고리</h2>
 			<ul>
 				<c:forEach items="${categoryList }" var="category">
-					<li><a href="${pageContext.request.contextPath }/${blogVo.blogId}/${category.no}">${category.name }</a></li>
+					<li><a
+						href="${pageContext.request.contextPath }/${blogVo.blogId}/${category.no}">${category.name }</a></li>
 				</c:forEach>
 			</ul>
 		</div>

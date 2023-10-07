@@ -17,12 +17,13 @@ public class CategoryService {
 		return categoryRepository.getCategoriesById(blogId);
 	}
 
-	public boolean add(CategoryVo categoryVo) {
+	public long add(CategoryVo categoryVo) {
 		return categoryRepository.add(categoryVo);
 	}
 
 	public boolean delete(Long no) {
 		return categoryRepository.delete(no);
 	}
+
 
 }

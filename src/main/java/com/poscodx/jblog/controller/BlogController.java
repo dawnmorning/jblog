@@ -74,7 +74,7 @@ public class BlogController {
 		} else if (postVo != null && !postVo.isEmpty()) {
 			model.addAttribute("post", postVo.get(0));
 		}
-
+		System.out.println(categoryList);
 		model.addAttribute("categoryNo", categoryNo.orElse(null));
 		model.addAttribute("postVo", postVo);
 		model.addAttribute("blogVo", blogVo);
