@@ -1,6 +1,5 @@
 package com.poscodx.jblog.controller;
 
-import java.lang.ProcessBuilder.Redirect;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,6 +46,14 @@ public class BlogController {
 			return "error/404";
 		}
 
+		Long resolvedCategoryNo = categoryNo.orElse(-1L);
+		boolean isValidCategory = categoryList.stream()
+				.anyMatch(cat -> cat.getNo() != null && cat.getNo().equals(resolvedCategoryNo));
+
+		if (!isValidCategory && categoryNo.isPresent()) {
+			return "error/404";
+		}
+
 		List<PostVo> postVo = null;
 		if (categoryNo.isPresent()) {
 			postVo = postService.getPostsByCategory(categoryNo.get());
@@ -56,18 +63,16 @@ public class BlogController {
 		} else {
 			categoryNo = Optional.of(categoryList.get(0).getNo());
 			postVo = postService.getPostsByCategory(categoryNo.get());
-			System.out.println(categoryNo.get());
 		}
 
 		if (postNo.isPresent()) {
-			PostVo post = postService.getPostByNo(postNo.get());
-			if (post == null) {
+			if (postVo.stream().noneMatch(post -> post.getNo().equals(postNo.get()))) {
 				return "error/404";
 			}
+			PostVo post = postService.getPostByNo(postNo.get());
 			model.addAttribute("post", post);
 		} else if (postVo != null && !postVo.isEmpty()) {
 			model.addAttribute("post", postVo.get(0));
-			System.out.println(postVo.get(0));
 		}
 
 		model.addAttribute("categoryNo", categoryNo.orElse(null));
