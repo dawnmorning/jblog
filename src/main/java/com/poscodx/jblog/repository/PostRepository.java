@@ -28,8 +28,8 @@ public class PostRepository {
 		return sqlSession.selectList("post.getPostsByCategory", categoryNo);
 	}
 
-	public PostVo findPostByPostNo(Long postNo) {
-		return sqlSession.selectOne("post.findPostByPostNo", postNo);
+	public PostVo getPostByPostNo(Long postNo) {
+		return sqlSession.selectOne("post.getPostByPostNo", postNo);
 	}
 
 }

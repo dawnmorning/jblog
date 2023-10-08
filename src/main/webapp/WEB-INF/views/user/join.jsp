@@ -39,7 +39,7 @@
 
 		</form>
 	</div>
-<!-- jQuery 라이브러리 추가 -->
+
 <script>
 	$(document).ready(function() {
 		$("#btn-checkid").click(function() {

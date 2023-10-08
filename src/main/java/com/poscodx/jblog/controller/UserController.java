@@ -46,7 +46,7 @@ public class UserController {
 		BlogVo blogVo = new BlogVo();
 		blogVo.setBlogId(userVo.getId());
 		blogVo.setTitle(userVo.getName() + "님의 블로그입니다.");
-		// 여기에서 기본 이미지 경로 설정
+		
 		blogVo.setImage("/assets/images/spring-logo.jpg");
 		blogService.add(blogVo);
 

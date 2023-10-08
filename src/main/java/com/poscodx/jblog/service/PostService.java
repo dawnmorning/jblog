@@ -18,7 +18,7 @@ public class PostService {
 	}
 
 	public PostVo getPostByNo(Long postNo) {
-		return postRepository.findPostByPostNo(postNo);
+		return postRepository.getPostByPostNo(postNo);
 	}
 
 	public boolean add(PostVo postVo) {

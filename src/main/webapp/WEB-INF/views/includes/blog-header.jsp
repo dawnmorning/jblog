@@ -17,7 +17,7 @@
 				<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
 			</c:when>
 			<c:when test="${not empty authUser and blogVo.blogId ne authUser.id}">
-				<li><a href="${pageContext.request.contextPath}/${blogVo.blogId}">내 블로그</a></li>
+				<li><a href="${pageContext.request.contextPath}/${authUser.id}">내 블로그</a></li>
 				<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 			</c:when>
 			<c:otherwise>

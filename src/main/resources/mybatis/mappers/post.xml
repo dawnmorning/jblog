@@ -26,7 +26,7 @@
 		]]>
 	</select>
 	
-	<select id="findPostByPostNo" resultType="postvo" parameterType="long">
+	<select id="getPostByPostNo" resultType="postvo" parameterType="long">
 		<![CDATA[
 		select title, contents
 		from post

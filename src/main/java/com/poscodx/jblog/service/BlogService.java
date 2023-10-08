@@ -27,11 +27,6 @@ public class BlogService {
 		return blogRepository.getPostByCategory(no);
 	}
 
-	public PostVo getPostByNo(Long postNo) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 	public void add(BlogVo blogVo) {
 		blogRepository.add(blogVo);
 	}

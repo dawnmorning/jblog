@@ -36,11 +36,22 @@
 
 	</select>
 
-	<update id="update" parameterType="blogvo">
-		<![CDATA[
-			update blog set title=#{title}, image=#{image} where blog_id = #{blogId};
-		]]>
-
-
+	<update id='update' parameterType="blogvo">
+		<choose>
+			<when test='image == null'>
+				<![CDATA[
+				update blog
+				set title = #{title}
+				where blog_id = #{blogId}
+				]]>
+			</when>
+			<otherwise>
+				<![CDATA[
+				update blog
+				set title = #{title}, image = #{image}
+				where blog_id = #{blogId}
+				]]>
+			</otherwise>
+		</choose>
 	</update>
 </mapper>
