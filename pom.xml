@@ -6,6 +6,7 @@
 		<groupId>com.poscodx</groupId>
 		<artifactId>jblog</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
+		<relativePath />
 	</parent>
 	<artifactId>jblog03</artifactId>
 	<packaging>war</packaging>
